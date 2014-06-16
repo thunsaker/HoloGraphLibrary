@@ -2,7 +2,7 @@
  * 	   Created by Daniel Nadeau
  * 	   daniel.nadeau01@gmail.com
  * 	   danielnadeau.blogspot.com
- * 
+ *
  * 	   Licensed to the Apache Software Foundation (ASF) under one
        or more contributor license agreements.  See the NOTICE file
        distributed with this work for additional information
@@ -23,46 +23,88 @@
 
 package com.echo.holographlibrary;
 
+import android.graphics.Color;
 import android.graphics.Path;
 import android.graphics.Region;
 
 public class Bar {
 
-    private int color;
-	private String name;
-	private float value;
-	private Path path;
-	private Region region;
-	
-	public int getColor() {
-		return color;
-	}
-	public void setColor(int color) {
-		this.color = color;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public float getValue() {
-		return value;
-	}
-	public void setValue(float value) {
-		this.value = value;
-	}
-	public Path getPath() {
-		return path;
-	}
-	public void setPath(Path path) {
-		this.path = path;
-	}
-	public Region getRegion() {
-		return region;
-	}
-	public void setRegion(Region region) {
-		this.region = region;
-	}
-	
+    private final Path mPath = new Path();
+    private final Region mRegion = new Region();
+    private int mColor = 0xFF33B5E5;
+    private int mLabelColor = -1;
+    private int mSelectedColor = -1;
+    private int mValueColor = Color.WHITE;
+    private String mName = null;
+    private float mValue;
+    private String mValueString = null;
+
+    public int getColor() {
+        return mColor;
+    }
+
+    public void setColor(int color) {
+        mColor = color;
+    }
+
+    public int getLabelColor() {
+        return mLabelColor == -1 ? mColor : mLabelColor;
+    }
+
+    public void setLabelColor(int labelColor) {
+        mLabelColor = labelColor;
+    }
+
+    public int getSelectedColor() {
+        if (-1 == mSelectedColor) mSelectedColor = Utils.darkenColor(mColor);
+        return mSelectedColor;
+    }
+
+    public void setSelectedColor(int selectedColor) {
+        mSelectedColor = selectedColor;
+    }
+
+    public int getValueColor() {
+        return mValueColor;
+    }
+
+    public void setValueColor(int valueColor) {
+        mValueColor = valueColor;
+    }
+
+    public String getName() {
+        return (null == mName) ? "" : mName;
+    }
+
+    public void setName(String name) {
+        mName = name;
+    }
+
+    public float getValue() {
+        return mValue;
+    }
+
+    public void setValue(float value) {
+        mValue = value;
+    }
+
+    public String getValueString() {
+        if (mValueString != null) {
+            return mValueString;
+        } else {
+            return String.valueOf(mValue);
+        }
+    }
+
+    public void setValueString(final String valueString) {
+        mValueString = valueString;
+    }
+
+    public Path getPath() {
+        return mPath;
+    }
+
+    public Region getRegion() {
+        return mRegion;
+    }
 }

@@ -25,7 +25,7 @@ local.properties
 proguard/
 
 # Intellij project files
-# *.iml - commenting out this since it seems okay now to commit .iml files to version control.
+*.iml - commenting out this since it seems okay now to commit .iml files to version control.
 *.ipr
 *.iws
 .idea/*
